@@ -1,0 +1,8 @@
+package day0104;
+
+public class Args {
+	public static void main(String[] args) {
+		 String name = args[0];
+		 int java = Integer.parseInt(args[1]);
+	}
+}

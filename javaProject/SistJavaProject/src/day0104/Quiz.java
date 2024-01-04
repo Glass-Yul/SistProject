@@ -1,0 +1,27 @@
+package day0104;
+
+import java.util.Scanner;
+
+public class Quiz {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.print("상품명을 입력하세요 : ");
+		String name = sc.next();
+		System.out.print("가격은 입니까? ");
+		int num = sc.nextInt();
+		System.out.print("수량은 몇 개 입니까? ");
+		int count = sc.nextInt();
+		
+		System.out.println("\n상품입고");
+		System.out.println("======================");
+		System.out.println("입고상품명 : "+name);
+		System.out.println("수량 : "+count+"개");
+		System.out.println("가격 : "+num+"원");
+		System.out.println("======================");
+		System.out.println("총 가격 : "+num*count+"원");
+
+	}
+
+}

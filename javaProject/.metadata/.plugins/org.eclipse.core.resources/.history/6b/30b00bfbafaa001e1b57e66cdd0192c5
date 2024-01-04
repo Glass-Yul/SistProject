@@ -1,0 +1,28 @@
+package day0104;
+
+public class A {
+	class B{ // 멤버 클래스
+		int field = 1;
+		static int sField = 2;
+		
+		B(){
+			System.out.println("B 생성자 실행");
+		}
+		
+		void method1() {
+			System.out.println("B-method1 실행");
+		}
+		static void sMethod1() {
+			System.out.println("B-sMethod1 실행");
+		}
+		
+		void useB() {
+			B b = new B();
+			System.out.println("b.field" + b.field);
+			b.method1();
+			
+			System.out.println("b.sField" + b.sField);
+			b.sMethod1();
+		}
+	}
+}

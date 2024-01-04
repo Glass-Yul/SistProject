@@ -1,0 +1,13 @@
+package day0104;
+
+public class Args {
+	public static void main(String[] args) {
+		 String name = args[0];
+		 int java = Integer.parseInt(args[1]);
+		 int oracle = Integer.parseInt(args[2]);
+		 
+		 System.out.println("내 이름은 " + name);
+		 System.out.println("자바 점수는 " + java);
+		 System.out.println("오라클 점수는 " + oracle);
+	}
+}

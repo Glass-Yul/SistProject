@@ -1,0 +1,21 @@
+package day0104;
+
+public class DataType {
+
+	public static void main(String[] args) {
+		// String + int = String
+		int java = Integer.parseInt(args[0]);
+		int jsp = Integer.parseInt(args[1]);
+		int spring = Integer.parseInt(args[2]);
+		
+		int total = java + jsp + spring;
+		int count = 3;
+		double avg1 = total/count;
+		double avg2 = (double)total/count;
+		
+		System.out.printf("%f\n",avg1);
+		System.out.printf("%.3f",avg2);
+
+	}
+
+}
