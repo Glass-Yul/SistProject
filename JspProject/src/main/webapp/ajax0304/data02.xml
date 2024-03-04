@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<person no="1">
+		<name>유민상</name>
+		<addr>인천</addr>
+	</person>
+	<person no="2">
+		<name>캬캬캬</name>
+		<addr>서울</addr>
+	</person>
+	<person no="3">
+		<name>낙낙</name>
+		<addr>인천</addr>
+	</person>
+	<person no="4">
+		<name>뇽뇽 배고팡</name>
+		<addr>서울</addr>
+	</person>
+</data>

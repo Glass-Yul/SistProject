@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap"
+	rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<title>ajax test3</title>
+<style type="text/css">
+body {
+	margin: 50px
+}
+</style>
+<script type="text/javascript">
+	$(function(){
+		$("#btn1").click(function(){
+			$("#result").empty(); // 연속 쓰기 방지
+			
+			// xml3 읽기
+			$.ajax({
+				type:"get",
+				url:"data03.xml",
+				dataType:"xml",
+				success:function(data){ // 넘어온 data는 배열 타입임
+					var s="";
+					$(data).find("stu").each(function(idex, ele){
+						var n=$(ele);
+						s+="<p><div class='alert alert-info' style='width:400px'>";
+						s+="name : "+n.attr("name")+"<br>";
+						s+="java : "+n.find("java").text()+"<br>";
+						s+="spring : "+n.find("spring").text()+"<br>";
+						s+="ajax : "+n.find("ajax").text();
+						s+="</div>"
+					});
+					
+					$("#result").html(s);
+				},
+				statusCode:{
+					404:function(){
+						alert("xml 파일을 찾을 수 없음");
+					},
+					500:function(){
+						alert("서버 오류");
+					}
+				}
+			});	
+		
+		});
+		$("#btn2").click(function(){
+			$("#result").empty(); // 연속 쓰기 방지
+			
+			// json3 읽기
+			$.ajax({
+				type:"get",
+				url:"data03.json",
+				dataType:"json",
+				success:function(data){ // 넘어온 data는 배열 타입임
+					var s="";
+					// data는 배열명
+					$.each(data, function(idex, ele){ // idex : 인덱스 , ele : 넘어온 데이터
+						s+="<p><div class='alert alert-danger' style='width:400px'>";
+						s+="index : "+idex+"<br>";
+						s+="name : "+ele.name+"<br>";
+						s+="city : "+ele.city+"<br>";
+						s+="hp : "+ele.hp+"<br>";
+						s+="detailAddr : "+(ele.detailAddr==null?"해당 데이터 없음" : ele.detailAddr)+"<br>";
+						s+="</div>"
+					});
+					
+					$("#result").html(s);
+				},
+				statusCode:{
+					404:function(){
+						alert("json 파일을 찾을 수 없음");
+					},
+					500:function(){
+						alert("서버 오류");
+					}
+				}
+			});	
+		
+		});
+		// multi 데이터 읽기
+		$("#btn3").click(function(){
+			$("#result").empty(); // 연속 쓰기 방지
+			
+			// multi 데이터 읽기
+			$.ajax({
+				type:"get",
+				url:"multidata03.json",
+				dataType:"json",
+				success:function(data){ // 넘어온 data는 배열 타입임
+					var s="";
+					// data는 배열명
+					$.each(data, function(idex, ele){ // idex : 인덱스 , ele : 넘어온 데이터
+						s+="<p><div class='alert alert-info' style='width:400px'>";
+						s+="index : "+idex+"<br>";
+						s+="name : "+ele.name+"<br>";
+						s+="hobby : ";
+							if(ele.hobby==null)
+								s+="취미없음<br>";
+							else {
+								$.each(ele.hobby, function(i, arr){
+									s+="["+arr+"]";
+								});
+								s+="<br>";
+							}
+						s+="hp : "+(ele.hp==null?"번호없음" : ele.hp)+"<br>";
+						s+="addr : "+ele.addr+"<br>";
+						s+="</div>"
+					});
+					
+					$("#result").html(s);
+				},
+				statusCode:{
+					404:function(){
+						alert("json 파일을 찾을 수 없음");
+					},
+					500:function(){
+						alert("서버 오류");
+					}
+				}
+			});	
+		
+		});
+	});
+</script>
+</head>
+<body>
+	<h4>xml 파일 읽기</h4>
+	<button type="button" class="btn btn-outline-info" id="btn1">data03.xml</button>
+	<h4>json 파일 읽기</h4>
+	<button type="button" class="btn btn-outline-success" id="btn2">data03.json</button>
+	<h4>multi 데이터 읽기</h4>
+	<button type="button" class="btn btn-outline-info" id="btn3">multidata03.json</button>
+	<div id="result">결과</div>
+
+
+</body>
+</html>
