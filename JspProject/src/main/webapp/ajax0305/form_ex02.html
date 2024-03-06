@@ -62,7 +62,7 @@
 			$.ajax({
 				type:"get",
 				url:"read_ex02.jsp",
-				dataType:"json",
+				dataType:"json", // 해당 파일에서 받은 데이터 타입
 				data:frm,
 				success:function(data){
 					var s="코드 : "+data.scode+"<br>";
