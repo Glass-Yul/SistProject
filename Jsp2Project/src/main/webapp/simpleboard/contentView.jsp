@@ -66,7 +66,7 @@
 						onclick="location.href='addBoard.jsp'">
 						<i class="bi bi-pencil"></i>글쓰기</button>
 				<button type="button" class="btn btn-outline-warning"
-						onclick="location.href='updatePwdBoard.jsp?num=<%=board.getNum() %>'" style="width:80px">
+						onclick="location.href='updateBoard.jsp?num=<%=board.getNum() %>'" style="width:80px">
 						<i class="bi bi-pencil-square"></i>수정</button>
 				<button type="button" class="btn btn-outline-danger" style="width:80px"
 						onclick="location.href='deletePwdBoard.jsp?num=<%=board.getNum() %>'">

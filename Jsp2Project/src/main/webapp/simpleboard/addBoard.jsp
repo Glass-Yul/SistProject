@@ -66,8 +66,6 @@
 			</table>
 		</form>
 		
-		<!-- 미리 보기 이미지 -->
-		<img alt="" src="" id="preshow">
 	</div>
 </body>
 </html>

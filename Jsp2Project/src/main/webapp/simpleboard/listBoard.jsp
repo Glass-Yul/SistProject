@@ -131,7 +131,7 @@
 	no=totalCount-(currentPage-1)*perPage;
 
 	//페이지에서 보여질 글만 가져오기
-	List<SimpleboardDto>list=dao.getPagingList(startPage, perPage);
+	List<SimpleboardDto>list=dao.getPagingList(startNum, perPage);
 
 	//List<SimpleBoardDto>list=dao.getAllDatas();
 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -173,15 +173,9 @@
 								<%=board.getSubject() %>
 							</a>
 						</td>
-						<td>
-							<%=board.getWriter() %>
-						</td>
-						<td>
-							<%=sdf.format(board.getWriteday()) %>
-						</td>
-						<td>
-							<%=board.getReadcount()%>
-						</td>
+						<td><%=board.getWriter() %></td>
+						<td><%=sdf.format(board.getWriteday()) %></td>
+						<td><%=board.getReadcount()%></td>
 					</tr>
 				<%}
 			}
@@ -195,7 +189,7 @@
   if(startPage>1)
   {%>
 	  <li class="page-item ">
-	   <a class="page-link" href="boardlist.jsp?currentPage=<%=startPage-1%>" style="color: black;">이전</a>
+	   <a class="page-link" href="listBoard.jsp?currentPage=<%=startPage-1%>" style="color: black;">이전</a>
 	  </li>
   <%}
     for(int pp=startPage;pp<=endPage;pp++)
