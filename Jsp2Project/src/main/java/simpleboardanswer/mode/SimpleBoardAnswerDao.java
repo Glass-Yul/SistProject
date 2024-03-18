@@ -67,28 +67,6 @@ public class SimpleBoardAnswerDao {
 		return answer;
 	}
 	
-	// 조회수 증가 시키기
-//	public void updateCount(String num) {
-//		Connection conn = db.getConnection();
-//		PreparedStatement pstmt = null;
-//		
-//		String sql = "update simpleboard set readcount=readcount+1 where num=?";
-//		
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, num);
-//			
-//			int result = pstmt.executeUpdate();
-//			if(result>0)System.out.println("updateCount success");
-//			else System.out.println("updateCount error");
-//			
-//		}catch (Exception e) {
-//			e.printStackTrace();
-//		}finally {
-//			db.dbClose(pstmt, conn);
-//		}
-//		
-//	}
 	
 	// all select 
 	public List<SimpleBoardAnswerDto> allSelect(String num) {
@@ -125,32 +103,30 @@ public class SimpleBoardAnswerDao {
 	}
 	
 	
-//	// update
-//	public void update(SimpleboardDto board) {
-//		Connection conn = db.getConnection();
-//		PreparedStatement pstmt = null;
-//		
-//		String sql = "update simpleboard set writer=?,subject=?,content=?,pwd=?,writeday=now() where num=?";
-//		
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, board.getWriter());
-//			pstmt.setString(2, board.getSubject());
-//			pstmt.setString(3, board.getContent());
-//			pstmt.setString(4, board.getPwd());
-//			pstmt.setString(5, board.getNum());
-//			
-//			int result = pstmt.executeUpdate();
-//			if(result>0) System.out.println("update success");
-//			else System.out.println("update error");
-//			
-//		}catch (Exception e) {
-//			e.printStackTrace();
-//		}finally {
-//			db.dbClose(pstmt, conn);
-//		}
-//		
-//	}
+	// update
+	public void update(SimpleBoardAnswerDto answer) {
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		
+		String sql = "update simpleboardanswer set nickname=?,content=?,writeday=now() where id=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, answer.getNickname());
+			pstmt.setString(2, answer.getContent());
+			pstmt.setString(3, answer.getId());
+			
+			int result = pstmt.executeUpdate();
+			if(result>0) System.out.println("update success");
+			else System.out.println("update error");
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			db.dbClose(pstmt, conn);
+		}
+		
+	}
 	
 	// delete
 	public void delete(String id) {

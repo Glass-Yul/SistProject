@@ -223,10 +223,79 @@ public class SimpleboardDao {
 	
 	
 	// pwd 확인
-	
+	public boolean pwdCheck(String num, String pwd) {
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from simpleboard where num=? and pwd=?";
+		boolean check = false;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			pstmt.setString(2, pwd);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				check=true;
+				
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		
+		return check;
+	}
 	
 	// update
-	
+	public void update(SimpleboardDto board) {
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		
+		String sql = "update simpleboard set writer=?,subject=?,content=?,pwd=?,writeday=now() where num=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, board.getWriter());
+			pstmt.setString(2, board.getSubject());
+			pstmt.setString(3, board.getContent());
+			pstmt.setString(4, board.getPwd());
+			pstmt.setString(5, board.getNum());
+			
+			int result = pstmt.executeUpdate();
+			if(result>0) System.out.println("update success");
+			else System.out.println("update error");
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			db.dbClose(pstmt, conn);
+		}
+		
+	}
 	
 	// delete
+	public void delete(String num) {
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		
+		String sql = "delete from simpleboard where num=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			
+			int result = pstmt.executeUpdate();
+			if(result>0) System.out.println("delete success");
+			else System.out.println("delete error");
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			db.dbClose(pstmt, conn);
+		}
+	}
 }

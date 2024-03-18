@@ -10,6 +10,7 @@ public class SimpleboardDto {
 	private String pwd;
 	private String readcount;
 	private Timestamp writeday;
+	private int answercnt;
 	
 	
 	public String getNum() {
@@ -53,6 +54,12 @@ public class SimpleboardDto {
 	}
 	public void setWriteday(Timestamp writeday) {
 		this.writeday = writeday;
+	}
+	public int getAnswercnt() {
+		return answercnt;
+	}
+	public void setAnswercnt(int answercnt) {
+		this.answercnt = answercnt;
 	}
 	
 	
