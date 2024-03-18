@@ -1,3 +1,4 @@
+<%@page import="simpleboardanswer.mode.SimpleBoardAnswerDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="simpleboard.model.SimpleboardDto"%>
 <%@page import="java.util.List"%>
@@ -124,18 +125,26 @@
 
 	//각페이지에서 보여질 시작번호
 	//1페이지:0, 2페이지:5 3페이지: 10.....
-	startNum=(currentPage-1)*perPage;
+	startNum = (currentPage-1)*perPage;
 
 	//각페이지당 출력할 시작번호 구하기
 	//총글개수가 23  , 1페이지:23 2페이지:18  3페이지:13
 	no=totalCount-(currentPage-1)*perPage;
 
 	//페이지에서 보여질 글만 가져오기
-	List<SimpleboardDto>list=dao.getPagingList(startNum, perPage);
+	List<SimpleboardDto> list =dao.getPagingList(startNum, perPage);
 
 	//List<SimpleBoardDto>list=dao.getAllDatas();
-	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	//int count=list.size();
+	
+	
+	// 댓글 갯수를 위해
+	SimpleBoardAnswerDao adao = new SimpleBoardAnswerDao();
+	for(SimpleboardDto board : list){
+		int answercnt = adao.allSelect(board.getNum()).size();
+		board.setAnswercnt(answercnt);
+	}
 	
 %>	
 <body>
@@ -172,6 +181,15 @@
 							<a href="contentView.jsp?num=<%=board.getNum() %>">
 								<%=board.getSubject() %>
 							</a>
+							<!-- 댓글 수 -->
+							<%
+							if(board.getAnswercnt() > 0)
+							{%>
+							<a href="contentView.jsp?num=<%=board.getNum()%>&currentPage=<%=currentPage %>#alist" style="color: red;">
+								[<%=board.getAnswercnt() %>]
+							</a>	
+							<%}
+							%>
 						</td>
 						<td><%=board.getWriter() %></td>
 						<td><%=sdf.format(board.getWriteday()) %></td>
