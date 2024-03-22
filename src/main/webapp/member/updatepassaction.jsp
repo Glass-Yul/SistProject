@@ -15,28 +15,15 @@
   String num=request.getParameter("num");
   String pass=request.getParameter("pass");
   
-//dao 선언
   MemberDao dao=new MemberDao();
-  
-//비번체크후 맞을경우 삭제, 틀릴경우 경고후 이전페이지로 가기
   boolean b=dao.isEqualPass(num, pass);
   
-  if(b){
-	  dao.deleteMember(num);
-	  
-	  //세션삭제
-	  session.removeAttribute("loginok");
-	  session.removeAttribute("myid");
-	  session.removeAttribute("saveok");
-	  %>
+  if(b)
+  {
+	  response.sendRedirect("../index.jsp?main=member/updateform.jsp?num="+num);
+  }else{%>
 	  <script type="text/javascript">
-	   alert("회원탈퇴성공!!!");
-	   location.href="../index.jsp";
-	  </script>
-  <%}else{%>
-	  
-	  <script type="text/javascript">
-	    alert("비밀번호가 맞지않습니다");
+	    alert("비밀번호가 틀렸어요");
 	    history.back();
 	  </script>
   <%}

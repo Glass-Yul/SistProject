@@ -18,7 +18,7 @@
      width: 100%;
      height: 80px;
      line-height: 80px;
-     font-size: 20pt;
+     font-size: 12pt;
      font-family: 'Noto Serif KR';
      text-align: center;
   }
@@ -63,13 +63,10 @@
 <%
   String mainPage="layout/main.jsp"; //기본페이지
   
-  System.out.println("request : "+request.getParameter("main"));
-  
   //url을 통해서 main값을 읽어서 메인페이지에 출력한다
   if(request.getParameter("main")!=null)
   {
 	  mainPage=request.getParameter("main");
-	  System.out.println("mainPage : "+mainPage);
   }
 %>
 <body>
