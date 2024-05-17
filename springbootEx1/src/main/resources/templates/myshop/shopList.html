@@ -1,0 +1,64 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>shopList</title>
+    <style type="text/css">
+        .box{
+            width: 30px;
+            height: 30px;
+            border-radius: 100px;
+        }
+        th {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div style="margin: 100px 100px; width: 1000px;">
+    <button type="button" class="btn btn-outline-info"
+            onclick="location.href='writeform'">상품입력</button>
+    <br><br>
+    <h5 class="alert alert-warning">
+        <b>총 <span th:text="${totalCount}"></span>개의 상품정보가 있습니다</b>
+    </h5>
+
+    <table class="table table-bordered">
+        <tr class="table-success">
+            <th width="80">번호</th>
+            <th width="280">상품명</th>
+            <th width="180">색상</th>
+            <th width="230">가격</th>
+            <th width="180">입고일</th>
+            <th width="200">등록일</th>
+            <th width="280">편집</th>
+        </tr>
+
+        <tr th:each="myshop : ${myShops}">
+            <td align="center" th:text="${myshop.num}"></td>
+            <td th:text="${myshop.name}"></td>
+            <td align="center">
+                <div class="box" th:style="'background-color:' + ${myshop.color} "></div>
+            </td>
+            <td align="center" th:text="${#numbers.formatDecimal(myshop.price, 0, 'COMMA', 0, 'POINT')} + '₩'"></td>
+            <td th:text="${myshop.receiving}"></td>
+            <td th:text="${#dates.format(myshop.writeDay, 'yyyy-MM-dd HH:mm')}"></td>
+            <td>
+                <button type="button" class="btn btn-outline-info btn-sm"
+                        th:onclick="'location.href=\'updateform?num=' + ${myshop.num} + '\''">수정</button>
+                <button type="button" class="btn btn-outline-danger btn-sm"
+                        th:onclick="'location.href=\'delete?num=' + ${myshop.num} + '\''">삭제</button>
+            </td>
+        </tr>
+
+    </table>
+</div>
+</body>
+</html>

@@ -22,21 +22,21 @@ public class TestController {
         return test;
     }
 
-    @GetMapping("/shop/list")
-    public List<Shop> shopList() {
-        List<Shop> list = new ArrayList<Shop>();
-
-        for (int i = 0; i < 5; i++) {
-            Shop shop = new Shop();
-            shop.setShop("shop" + i + 1);
-            shop.setCount(1);
-            shop.setPrice(10000 + i * 1000);
-
-            list.add(shop);
-        }
-
-        return list;
-    }
+//    @GetMapping("/shop/list")
+//    public List<Shop> shopList() {
+//        List<Shop> list = new ArrayList<Shop>();
+//
+//        for (int i = 0; i < 5; i++) {
+//            Shop shop = new Shop();
+//            shop.setShop("shop" + i + 1);
+//            shop.setCount(1);
+//            shop.setPrice(10000 + i * 1000);
+//
+//            list.add(shop);
+//        }
+//
+//        return list;
+//    }
 
     @GetMapping("/sist")
     public HashMap<String, String> hi() {
@@ -47,7 +47,7 @@ public class TestController {
     }
 
     //=======
-    @GetMapping("/")
+    /*@GetMapping("/")
     public ModelAndView home() {
         ModelAndView view = new ModelAndView();
         view.addObject("name", "이효리");
@@ -55,6 +55,6 @@ public class TestController {
 
         view.setViewName("home");
         return view;
-    }
+    }*/
 
 }
